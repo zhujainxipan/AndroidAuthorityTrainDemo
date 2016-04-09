@@ -10,15 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main"
-    tools:context=".MainActivity">
+    tools:showIn="@layout/activity_surface_view"
+    tools:context="com.example.annuoaichengzhang.androidauthoritytraindemo.SurfaceViewActivity">
 
-
-    <Button
-        android:id="@+id/spanable_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Spannable demo"
+    <SurfaceView
+        android:id="@+id/camera_sufaceview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         />
 
     <Button
@@ -26,6 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="拍照"
-        android:layout_below="@id/spanable_btn"
+        android:layout_below="@id/camera_sufaceview"
         />
+
+
 </RelativeLayout>
