@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SurfaceViewActivity extends AppCompatActivity {
     private Camera camera;
@@ -46,7 +47,7 @@ public class SurfaceViewActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            camera = Camera.open(Camera.getNumberOfCameras()-1);
+            camera = Camera.open(0);
         } else {
             camera = Camera.open();
         }
@@ -75,7 +76,7 @@ public class SurfaceViewActivity extends AppCompatActivity {
                                        return;
                                    }
                                    Camera.Parameters parameters = camera.getParameters();
-                                   Camera.Size size = null;
+                                   Camera.Size size = getBestSupportedSize(parameters.getSupportedPreviewSizes(), width, height);
                                    parameters.setPreviewSize(size.width, size.height);
                                    camera.setParameters(parameters);
                                    try {
@@ -99,6 +100,21 @@ public class SurfaceViewActivity extends AppCompatActivity {
 
         );
     }
+
+
+    private Camera.Size getBestSupportedSize(List<Camera.Size> sizes, int width, int height) {
+        Camera.Size bestSize = sizes.get(0);
+        int largestArea = bestSize.width * bestSize.height;
+        for (Camera.Size size : sizes) {
+            int area = size.width + size.height;
+            if (area > largestArea) {
+                bestSize = size;
+                largestArea = area;
+            }
+        }
+        return bestSize;
+    }
+
 
     @Override
     protected void onPause() {
