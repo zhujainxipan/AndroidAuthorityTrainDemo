@@ -43,7 +43,7 @@ public class SpannableActivity extends AppCompatActivity {
         tv1.setText(spannableString);
 
         // 2.Html.fromHtml()方法
-        tv2.setText(Html.fromHtml("北京市发布霾黄色预警，<font color='#ff0000'><big><big>外出携带好</big></big></font>口罩"));
+        tv2.setText(Html.fromHtml("北京市<br>发布霾黄色预警，<font color='#ff0000'><big><big>外出携带好</big></big></font>口罩"));
 
 
     }
